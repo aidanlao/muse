@@ -1,6 +1,6 @@
 # Piano Universe
 
-We're building a new library for musicians, giving them the best resources for the pieces that they'r learning. 
+We're building a new library for musicians, giving them the best resources for the pieces that they're learning. 
 
 
 ## Technologies Used
