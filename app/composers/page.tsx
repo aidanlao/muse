@@ -1,5 +1,5 @@
 import { getAllComposers } from "../firebase/queries";
-import { Link } from "@nextui-org/link";
+import Link from "next/link"
 export default async function composerDirectory() {
 
     const composers = await getAllComposers();
@@ -24,10 +24,6 @@ export default async function composerDirectory() {
             <ul className="flex flex-col">
 
             {composerList}
-            <Link
-					href="/composers">
-					Chopin
-				</Link>
             </ul>
         </div>
     );
