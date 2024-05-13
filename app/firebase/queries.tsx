@@ -25,3 +25,9 @@ import {
     const docSnap = await getDoc(docRef);
     return docSnap.data();
   })
+
+  export const getAllComposers = cache(async () => {
+    const colRef = collection(db, "composer");
+    const collectionSnap = await getDocs(colRef);
+    return collectionSnap.docs;
+  })

@@ -10,11 +10,11 @@ export const siteConfig = {
 		},
 		{
 			label: "Composers",
-			href: "/composers/chopin",
+			href: "/composers",
 		},
 		{
 			label: "Posts",
-			href: "/",
+			href: "/posts",
 		}
 	],
 	navMenuItems: [
@@ -24,11 +24,11 @@ export const siteConfig = {
 		},
 		{
 			label: "Composers",
-			href: "/composers/chopin",
+			href: "/composers",
 		},
 		{
 			label: "Posts",
-			href: "/",
+			href: "/posts",
 		}
 	],
 	links: {

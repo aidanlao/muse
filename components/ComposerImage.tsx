@@ -6,7 +6,7 @@ export default function ComposerImage({ url } : { url: string }) {
         <Image
             classNames={{
                 wrapper: "h-full",
-                img: "h-full object-cover object-top",
+                img: "h-full w-full object-cover object-top",
             }}
           as={NextImage}
           width={300}

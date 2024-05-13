@@ -13,7 +13,7 @@ export default async function Page({ params } : { params: { id: string }}) {
             <p>composer {post?.name}</p> */}
             
             <div className="md:basis-1/4 md:max-h-80">
-            <ComposerImage url="https://upload.wikimedia.org/wikipedia/commons/3/33/Chopin%2C_by_Wodzinska.JPG"/>
+            <ComposerImage url={composer?.image}/>
             
             </div>
             <div className="md:basis-3/4 flex gap-4 pb-4 flex-col md:px-5">

@@ -56,16 +56,16 @@ export const Navbar = () => {
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
-						<p className="font-bold text-inherit">MusicAnalysis</p>
+						<Logo />
 					</NextLink>
 				</NavbarBrand>
-				<ul className="hidden md:flex gap-4 justify-start ml-2">
+				<ul className="hidden sm:flex gap-4 justify-start ml-2">
 					{siteConfig.navItems.map((item) => (
 						<NavbarItem key={item.href}>
 							<NextLink
 								className={clsx(
 									linkStyles({ color: "foreground" }),
-									"data-[active=true]:text-primary data-[active=true]:font-medium"
+									"font-light"
 								)}
 								color="foreground"
 								href={item.href}
@@ -85,7 +85,7 @@ export const Navbar = () => {
 
 			</NavbarContent> */}
 
-			<NavbarContent className="md:hidden basis-1 pl-4" justify="end">
+			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
 				<ThemeSwitch />
 				<NavbarMenuToggle />
 			</NavbarContent>
@@ -103,7 +103,7 @@ export const Navbar = () => {
 										? "danger"
 										: "foreground"
 								}
-								href="#"
+								href={item.href}
 								size="lg"
 							>
 								{item.label}
