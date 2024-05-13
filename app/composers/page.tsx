@@ -24,6 +24,10 @@ export default async function composerDirectory() {
             <ul className="flex flex-col">
 
             {composerList}
+            <Link
+					href="/composers">
+					Chopin
+				</Link>
             </ul>
         </div>
     );
