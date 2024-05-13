@@ -1,4 +1,5 @@
 import { getComposer } from "@/app/firebase/queries"
+import ComposerImage from "@/components/ComposerImage";
 
 export default async function Page({ params } : { params: { id: string }}) {
     const post = await getComposer(params.id);
@@ -10,6 +11,7 @@ export default async function Page({ params } : { params: { id: string }}) {
             <p>ID: {params.id}</p>
             <p>sdf</p>
             <p>composer {post?.name}</p>
+            <ComposerImage url="https://upload.wikimedia.org/wikipedia/commons/3/33/Chopin%2C_by_Wodzinska.JPG"/>
         </div>
     )
 }
