@@ -9,7 +9,6 @@ export default async function composerDirectory() {
         return (
             <Link
                 key={c.id}
-                color="foreground"
                 href={`composers/${c.id}`}
             >
                 {c.name}
