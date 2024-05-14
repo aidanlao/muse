@@ -5,6 +5,15 @@ import { title } from "@/components/primitives";
 
 export default async function Page({ params } : { params: { id: string }}) {
     const composer = await getComposer(params.id);
+
+    console.log(composer);
+    const popularPieces =  composer?.popular?.map((popular : string) => {
+        return (
+            <PlayablePiece filename={popular} />
+        )
+    })
+    
+    
     return (
 <>
 <div className="w-100 flex justify-center flex-col-reverse md:flex-row">
@@ -24,8 +33,9 @@ export default async function Page({ params } : { params: { id: string }}) {
         </div>
         <div className="w-100 py-5 ">
             <h1 className="text-xl font-thin mb-5">popular</h1>
-            <PlayablePiece />
-        </div>
+           
+            {popularPieces ? (popularPieces) : (<p>No pieces to show.</p>)}
+            </div>
 </>
 
         
