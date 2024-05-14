@@ -6,6 +6,7 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
+import Searchbar from "@/components/Searchbar";
 
 export default function Home() {
 	return (
@@ -20,13 +21,9 @@ export default function Home() {
 					The best place for classical music analysis.</h2>
 			</div>
 
-			<div className="flex gap-3">
-				<Link
-					href="/composers"
-					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
-				>
-					Chopin
-				</Link>
+			<div className="w-full">
+				
+				<Searchbar />
 			</div>
 
 		</section>

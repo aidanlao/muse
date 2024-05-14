@@ -1,3 +1,4 @@
+'use client'
 import {
 	Navbar as NextUINavbar,
 	NavbarContent,
@@ -12,7 +13,7 @@ import { Kbd } from "@nextui-org/kbd";
 import Link from "next/link"
 import { Input } from "@nextui-org/input";
 import { link as linkStyles } from "@nextui-org/theme";
-
+import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
@@ -30,6 +31,7 @@ import {
 import { Logo } from "@/components/icons";
 
 export const Navbar = () => {
+	const [ isMenuOpen, setIsMenuOpen ] = useState(false);
 	const searchInput = (
 		<Input
 			aria-label="Search"
@@ -52,7 +54,10 @@ export const Navbar = () => {
 	);
 
 	return (
-		<NextUINavbar maxWidth="xl" position="sticky">
+		<NextUINavbar
+		isMenuOpen={isMenuOpen}
+		onMenuOpenChange={setIsMenuOpen} 
+		maxWidth="xl" position="sticky">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
@@ -98,6 +103,7 @@ export const Navbar = () => {
 					{siteConfig.navMenuItems.map((item, index) => (
 						<NavbarMenuItem key={`${item}-${index}`}>
 							<Link
+								onClick={()=> setIsMenuOpen(false)}
 								color={
 									index === 2
 										? "primary"
