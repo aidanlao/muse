@@ -7,6 +7,7 @@ import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import Searchbar from "@/components/Searchbar";
+import SearchbarWrapper from "@/components/SearchbarWrapper";
 
 export default function Home() {
 	return (
@@ -23,7 +24,7 @@ export default function Home() {
 
 			<div className="w-full">
 				
-				<Searchbar />
+				<SearchbarWrapper />
 			</div>
 
 		</section>

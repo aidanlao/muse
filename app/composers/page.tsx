@@ -3,7 +3,6 @@ import Link from "next/link"
 export default async function composerDirectory() {
 
     const composers = await getAllComposers();
-    console.log(composers);
     const composerList = composers?.map((composer) => {
         const c = composer.data();
         return (
