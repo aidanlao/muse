@@ -1,7 +1,16 @@
-import { getComposer } from "@/app/firebase/queries"
+import { getAllComposers, getComposer } from "@/app/firebase/queries"
 import ComposerImage from "@/components/ComposerImage";
 import PlayablePiece from "@/components/playablePiece";
 import { title } from "@/components/primitives";
+
+export async function generateStaticParams() {
+    const composers = await getAllComposers();
+
+    return composers.map((composer) => ({
+      slug: composer.id,
+    }))
+
+}
 
 export default async function Page({ params } : { params: { id: string }}) {
     const composer = await getComposer(params.id);
@@ -9,7 +18,7 @@ export default async function Page({ params } : { params: { id: string }}) {
     console.log(composer);
     const popularPieces =  composer?.popular?.map((popular : string) => {
         return (
-            <PlayablePiece filename={popular} />
+            <PlayablePiece key={popular} filename={popular} />
         )
     })
     
