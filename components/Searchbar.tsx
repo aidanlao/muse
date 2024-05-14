@@ -51,7 +51,9 @@ export default function Searchbar({ composersProp }: { composersProp: any }) {
         <>
             <style>
                 {
-                    `
+                    `.searchbarDiv .wrapper {
+                        font-family: inherit;
+                    }
                     .searchbarDiv .selected {
                         cursor: pointer;
                     }
