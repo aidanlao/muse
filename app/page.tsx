@@ -7,9 +7,13 @@ import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import Searchbar from "@/components/Searchbar";
-import SearchbarWrapper from "@/components/SearchbarWrapper";
+import { getAllComposers } from "./firebase/queries";
 
-export default function Home() {
+export default async function Home() {
+	const composerSnaps = await getAllComposers();
+        const composers = composerSnaps.map((composer) => {
+                    return composer.data();
+	})
 	return (
 		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
 			<div className="inline-block max-w-lg text-center justify-center">
@@ -24,7 +28,7 @@ export default function Home() {
 
 			<div className="w-full">
 				
-				<SearchbarWrapper />
+				<Searchbar composersProp={composers} />
 			</div>
 
 		</section>
