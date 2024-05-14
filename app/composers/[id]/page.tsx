@@ -1,13 +1,13 @@
 import { getComposer } from "@/app/firebase/queries"
 import ComposerImage from "@/components/ComposerImage";
+import PlayablePiece from "@/components/playablePiece";
 import { title } from "@/components/primitives";
 
 export default async function Page({ params } : { params: { id: string }}) {
     const composer = await getComposer(params.id);
     return (
-
-
-        <div className="w-100 flex justify-center flex-col-reverse md:flex-row">
+<>
+<div className="w-100 flex justify-center flex-col-reverse md:flex-row">
             {/* <p>ID: {params.id}</p>
             <p>sdf</p>
             <p>composer {post?.name}</p> */}
@@ -16,11 +16,18 @@ export default async function Page({ params } : { params: { id: string }}) {
             <ComposerImage url={composer?.image}/>
             
             </div>
-            <div className="md:basis-3/4 flex gap-4 pb-4 flex-col max-w-2xl md:px-5">
-                <h1 className={`text-2xl md:text-8xl font-black md:relative -left-10 z-10`}>{composer?.lastName}</h1>
+            <div className="md:basis-3/4 flex gap-4 pb-4 flex-col  md:px-5">
+                <h1 className={`text-3xl md:text-8xl font-black sm:text-6xl md:relative -left-10 z-10`}>{composer?.lastName}</h1>
                 <p className="text-xl font-thin">{composer?.name}</p>
-                <p className="max-w-2xl">{composer?.description}</p>
+                <p className="">{composer?.description}</p>
             </div>
         </div>
+        <div className="w-100 py-5 ">
+            <h1 className="text-xl font-thin mb-5">popular</h1>
+            <PlayablePiece />
+        </div>
+</>
+
+        
     )
 }

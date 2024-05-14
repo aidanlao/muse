@@ -10,6 +10,7 @@ export default async function composerDirectory() {
             <Link
                 key={c.id}
                 href={`composers/${c.id}`}
+                className="text-sky-700 hover:text-sky-500"
             >
                 {c.name}
             </Link>
