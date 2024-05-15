@@ -28,7 +28,7 @@ export default async function Home() {
 			</div>
 
 			<div className="w-full flex flex-col items-center justify-center gap-4">
-				<div className="w-full max-w-screen-md">
+				<div className="w-full max-w-screen-md relative z-40">
 				<Searchbar composersProp={composers} />
 				
 				</div>
