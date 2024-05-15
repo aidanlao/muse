@@ -77,7 +77,7 @@ export default function PlayablePiece({ audioid, name, opus }: { opus: string, a
         <Card>
             <CardBody className="p-0">
                 <div className="flex  divide-x">
-                    <div onClick={() => { toggle() }} className="transition flex transition hover:cursor-pointer hover:bg-slate-100 flex-col justify-center content-center p-5">
+                    <div onClick={() => { toggle() }} className="transition flex transition dark:hover:bg-slate-800 hover:cursor-pointer hover:bg-slate-100 flex-col justify-center content-center p-5">
                         {!isPlaying ? (
                             isFetchingSound ? (<BsThreeDots /> ): <FaPlay />
                         ) :
