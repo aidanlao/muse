@@ -12,10 +12,10 @@ export const siteConfig = {
 			label: "Composers",
 			href: "/composers",
 		},
-		{
-			label: "Posts",
-			href: "/posts",
-		}
+		// {
+		// 	label: "Posts",
+		// 	href: "/posts",
+		// }
 	],
 	navMenuItems: [
 		{
@@ -26,10 +26,10 @@ export const siteConfig = {
 			label: "Composers",
 			href: "/composers",
 		},
-		{
-			label: "Posts",
-			href: "/posts",
-		}
+		// {
+		// 	label: "Posts",
+		// 	href: "/posts",
+		// }
 	],
 	links: {
 		github: "https://github.com/nextui-org/nextui",
