@@ -14,11 +14,11 @@ import clsx from "clsx";
 
 
 
-export default function PlayablePiece({ filename }: { filename: string }) {
+export default function PlayablePiece({ audioid, name, opus }: { opus: string, audioid: string, name: string }) {
     const storage = getStorage(app);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isFetchingSound, setIsFetchingSound] = useState(false);
-    const gsReference = ref(storage, `gs://music-analysis-site.appspot.com/${filename}`);
+    const gsReference = ref(storage, `gs://music-analysis-site.appspot.com/${audioid}`);
     const soundRef = useRef<Howl | undefined>();
 
 
@@ -84,7 +84,7 @@ export default function PlayablePiece({ filename }: { filename: string }) {
                             (<FaStop />)}
                     </div>
                     <div className="p-3 flex flex-col justify-center transition w-full dark:hover:bg-slate-800 hover:cursor-pointer hover:bg-slate-100">
-                        <p>{filename}</p>
+                        <p>{name} <span className="text-gray-400">{opus}</span></p>
 
                     </div>
 

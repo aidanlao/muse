@@ -1,12 +1,12 @@
-import { getAllComposers, getComposer } from "@/app/firebase/queries"
+import { getAllComposers, getAllPiecesBy, getComposer, getPopularPiecesBy } from "@/app/firebase/queries"
 import ComposerImage from "@/components/ComposerImage";
 import PlayablePiece from "@/components/playablePiece";
 import { title } from "@/components/primitives";
+import { DocumentData } from "firebase/firestore";
 import Link from "next/link";
 
 export async function generateStaticParams() {
     const composers = await getAllComposers();
-
     return composers.map((composer) => ({
         slug: composer.id,
     }))
@@ -15,10 +15,12 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: { id: string } }) {
     const composer = await getComposer(params.id);
-
-    const popularPieces = composer?.popular?.map((popular: string) => {
+    const pieces = await getAllPiecesBy(params.id);
+    const popularPiecesDocs = await getPopularPiecesBy(params.id);
+    const popularPieces = popularPiecesDocs.map((pieceSnap: DocumentData) => {
+        const piece = pieceSnap.data()
         return (
-            <PlayablePiece key={popular} filename={popular} />
+            <PlayablePiece key={piece.audioid} {...piece} />
         )
     })
 

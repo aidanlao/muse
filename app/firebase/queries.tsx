@@ -31,3 +31,19 @@ import {
     const collectionSnap = await getDocs(colRef);
     return collectionSnap.docs;
   })
+
+  export const getAllPiecesBy = cache(async (composer :string ) => {
+    const colRef = collection(db,"pieces");
+    const q = query(colRef, where("composerid", "==", composer));
+    const colSnap = await getDocs(q);
+
+    return colSnap.docs;
+  })
+
+  export const getPopularPiecesBy = cache(async (composer :string ) => {
+    const colRef = collection(db,"pieces");
+    const q = query(colRef, where("composerid", "==", composer), where("popular", "==", true));
+    const colSnap = await getDocs(q);
+
+    return colSnap.docs;
+  })
