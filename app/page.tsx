@@ -8,6 +8,7 @@ import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import Searchbar from "@/components/Searchbar";
 import { getAllComposers } from "./firebase/queries";
+import { Button } from "@nextui-org/button";
 
 export default async function Home() {
 	const composerSnaps = await getAllComposers();
@@ -26,10 +27,17 @@ export default async function Home() {
 					The best place for classical music analysis.</h2>
 			</div>
 
-			<div className="w-full">
-				
+			<div className="w-full flex flex-col items-center justify-center gap-4">
+				<div className="w-full max-w-screen-md">
 				<Searchbar composersProp={composers} />
-			</div>
+				
+				</div>
+				<Button
+      href="/composers"
+      as={Link}
+      color="primary"
+      variant="solid">All Composers</Button>
+    </div>
 
 		</section>
 	);
