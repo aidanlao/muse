@@ -1,6 +1,7 @@
 import { getAllComposers, getAllPiecesBy, getComposer, getPopularPiecesBy } from "@/app/firebase/queries"
 import ComposerImage from "@/components/ComposerImage";
 import Piece from "@/components/Piece";
+import Searchbar from "@/components/Searchbar";
 import PlayablePiece from "@/components/playablePiece";
 import { title } from "@/components/primitives";
 import { DocumentData } from "firebase/firestore";
@@ -18,8 +19,10 @@ export default async function Page({ params }: { params: { id: string } }) {
             <PlayablePiece key={piece.audioid} {...piece} />
         )
     })
-    const pieces = pieceDocs.map((pieceSnap) => {
-        const piece = pieceSnap.data();
+    const pieces = pieceDocs.map((piece)=> {
+		return piece.data();
+	})
+    const piecesList = pieces.map((piece) => {
         return (
             <Piece composerid={piece.composerid} id={piece.id} opus={piece.opus} name={piece.name} key={piece.id} {...piece} />
         )
@@ -51,9 +54,10 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 
                         <div className="w-100 py-5">
-                            <h1 className="text-xl font-thin mb-5">complete</h1>
-                            <div className="flex flex-col gap-2 " >
-                                {pieces}
+                            <h1 className="text-xl font-thin mb-5">complete list</h1>
+                            <Searchbar placeholder={"Search pieces by " + composer?.lastName}searchables={pieces}/>
+                            <div className="pt-4 flex flex-col  " >
+                                {piecesList}
                             </div>
                         </div>
                     </>

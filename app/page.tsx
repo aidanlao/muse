@@ -35,7 +35,7 @@ export default async function Home() {
 
 			<div className="w-full flex flex-col items-center justify-center gap-4">
 				<div className="w-full max-w-screen-md relative z-40">
-				<Searchbar searchables={searchableItems} />
+				<Searchbar placeholder="Search composers / pieces"searchables={searchableItems} />
 				
 				</div>
 				<div className="flex gap-2">

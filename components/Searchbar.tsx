@@ -6,7 +6,7 @@ import Fuse, { FuseResult } from 'fuse.js'
 import { useRouter } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
-export default function Searchbar({ searchables }: { searchables: any }) {
+export default function Searchbar({ searchables, placeholder }: { placeholder:string, searchables: any }) {
     const router = useRouter();
     const [isRedirecting, setIsRedirecting] = useState(false);
     const [isDoneRendering, setIsDoneRendering] = useState(false);
@@ -94,10 +94,11 @@ export default function Searchbar({ searchables }: { searchables: any }) {
                     </p>
                 </div>
             ) : (
-                <div className={clsx("searchbarDiv ", isRedirecting && "opacity-25 pointer-events-none")}><ReactSearchAutocomplete
+                <div className={clsx("searchbarDiv ", isRedirecting && "opacity-25 pointer-events-none")}>
+                    <ReactSearchAutocomplete
                     items={searchables}
                     onSelect={handleOnSelect}
-                    placeholder={"Search composer / piece"}
+                    placeholder={placeholder}
                     formatResult={formatResult}
                     fuseOptions={options} /></div>
 
