@@ -10,7 +10,7 @@ export default function ComposerImage({ url } : { url: string }) {
             }}
           as={NextImage}
           width={300}
-          height={200}
+          height={500}
           src={url}
           alt="NextUI hero Image"
         />

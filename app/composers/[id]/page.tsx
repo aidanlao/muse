@@ -25,9 +25,7 @@ export default async function Page({ params }: { params: { id: string } }) {
  composer ? (
     <>
     <div className="w-100 flex justify-center flex-col-reverse md:flex-row">
-        {/* <p>ID: {params.id}</p>
-    <p>sdf</p>
-    <p>composer {post?.name}</p> */}
+
 
         <div className="md:basis-1/4 md:max-h-80">
             <ComposerImage url={composer?.image} />
