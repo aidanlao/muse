@@ -51,11 +51,24 @@ export default function Searchbar({ searchables }: { searchables: any }) {
         <>
             <style>
                 {
-                    `.searchbarDiv .wrapper {
+                    `
+                    .dark .searchbarDiv .wrapper {
+                        background-color: rgb(9 9 11);
+                        border:1px solid rgb(63 63 70);
+                        color: white;
+                    }
+                    .dark .searchbarDiv .wrapper input {
+                        color: white;
+                    }
+                    .dark .searchbarDiv .selected {
+                        background-color:   rgb(39 39 42); 
+                    }
+                    .searchbarDiv .wrapper {
                         font-family: inherit;
                     }
                     .searchbarDiv .selected {
                         cursor: pointer;
+                        
                     }
                     .searchbarFetcher {
                           height: 44px;
@@ -81,7 +94,7 @@ export default function Searchbar({ searchables }: { searchables: any }) {
                     </p>
                 </div>
             ) : (
-                <div className={clsx("searchbarDiv", isRedirecting && "opacity-25 pointer-events-none")}><ReactSearchAutocomplete
+                <div className={clsx("searchbarDiv ", isRedirecting && "opacity-25 pointer-events-none")}><ReactSearchAutocomplete
                     items={searchables}
                     onSelect={handleOnSelect}
                     placeholder={"Search composer / piece"}

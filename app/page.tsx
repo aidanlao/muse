@@ -38,11 +38,19 @@ export default async function Home() {
 				<Searchbar searchables={searchableItems} />
 				
 				</div>
+				<div className="flex gap-2">
 				<Button
       href="/composers"
       as={Link}
       color="primary"
       variant="solid">All Composers</Button>
+	  <Button
+      href="/piecelist"
+      as={Link}
+      color="secondary"
+      variant="solid">All Pieces</Button>
+				</div>
+				
     </div>
 
 		</section>

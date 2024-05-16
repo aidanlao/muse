@@ -12,6 +12,10 @@ export const siteConfig = {
 			label: "Composers",
 			href: "/composers",
 		},
+		{
+			label: "Pieces",
+			href: "/piecelist",
+		},
 		// {
 		// 	label: "Posts",
 		// 	href: "/posts",
@@ -25,6 +29,10 @@ export const siteConfig = {
 		{
 			label: "Composers",
 			href: "/composers",
+		},
+		{
+			label: "Pieces",
+			href: "/piecelist",
 		},
 		// {
 		// 	label: "Posts",

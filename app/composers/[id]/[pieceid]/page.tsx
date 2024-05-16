@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: { id: string, pieceid: 
                                 />
                             </div>
                             <div className="md:basis-3/4 flex gap-4 pb-4 flex-col  md:px-5">
-                                <h1 className={clsx(piece?.name.length >35 ? "text-3xl" : "md:text-8xl sm:text-6xl md:relative" , `text-3xl  font-black   -left-10 z-10`)}>{piece?.name}</h1>
+                                <h1 className={clsx(piece?.name.length >40 ? "text-3xl" : "md:text-8xl sm:text-6xl md:relative" , `text-3xl  font-black   -left-10 z-10`)}>{piece?.name}</h1>
                                 <div className="flex gap-4">
                                     <p className="text-xl font-thin">{piece?.opus}</p>
                                     <Link
