@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import Searchbar from "@/components/Searchbar";
-import { getAllComposers } from "./firebase/queries";
+import { getAllComposers, getAllPieces } from "./firebase/queries";
 import { Button } from "@nextui-org/button";
 
 export default async function Home() {
@@ -15,6 +15,12 @@ export default async function Home() {
         const composers = composerSnaps.map((composer) => {
                     return composer.data();
 	})
+	const pieceSnaps = await getAllPieces();
+	const pieces = pieceSnaps.map((piece)=> {
+		return piece.data();
+	})
+	const searchableItems = composers.concat(pieces);
+
 	return (
 		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
 			<div className="inline-block max-w-lg text-center justify-center">
@@ -29,7 +35,7 @@ export default async function Home() {
 
 			<div className="w-full flex flex-col items-center justify-center gap-4">
 				<div className="w-full max-w-screen-md relative z-40">
-				<Searchbar composersProp={composers} />
+				<Searchbar searchables={searchableItems} />
 				
 				</div>
 				<Button

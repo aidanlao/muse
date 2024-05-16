@@ -5,13 +5,7 @@ import { title } from "@/components/primitives";
 import { DocumentData } from "firebase/firestore";
 import Link from "next/link";
 
-export async function generateStaticParams() {
-    const composers = await getAllComposers();
-    return composers.map((composer) => ({
-        slug: composer.id,
-    }))
 
-}
 
 export default async function Page({ params }: { params: { id: string } }) {
     const composer = await getComposer(params.id);

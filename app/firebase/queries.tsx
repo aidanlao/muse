@@ -20,6 +20,11 @@ import {
     return docSnap.data();
   })
 
+  export const getPiece = cache(async (id: string) => {
+    const docRef = doc(db, "pieces", id);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
+  })
   export const getComposer = cache(async (id: string) => {
     const docRef = doc(db, "composer", id);
     const docSnap = await getDoc(docRef);
@@ -40,6 +45,12 @@ import {
     return colSnap.docs;
   })
 
+  export const getAllPieces = cache(async ()=> {
+    const colRef = collection(db,"pieces");
+    const colSnap = await getDocs(colRef);
+
+    return colSnap.docs;
+  })
   export const getPopularPiecesBy = cache(async (composer :string ) => {
     const colRef = collection(db,"pieces");
     const q = query(colRef, where("composerid", "==", composer), where("popular", "==", true));

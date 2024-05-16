@@ -6,7 +6,7 @@ import Fuse, { FuseResult } from 'fuse.js'
 import { useRouter } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
-export default function Searchbar({ composersProp }: { composersProp: any }) {
+export default function Searchbar({ searchables }: { searchables: any }) {
     const router = useRouter();
     const [isRedirecting, setIsRedirecting] = useState(false);
     const [isDoneRendering, setIsDoneRendering] = useState(false);
@@ -26,15 +26,14 @@ export default function Searchbar({ composersProp }: { composersProp: any }) {
             "name",
         ]
     }
-    type Item = {
-        id: string;
-        name: string;
-        lastName: string;
-    }
-    const handleOnSelect = (item: Item) => {
+    const handleOnSelect = (item: Record<string,any>) => {
         console.log(item);
         setIsRedirecting(true);
-        router.push(`/composers/${item.id}`)
+        if (item.composerid) {
+            router.push(`/composers/${item.composerid}/${item.id}`)
+        } else {
+            router.push(`/composers/${item.id}`)
+        }
 
     }
 
@@ -82,7 +81,7 @@ export default function Searchbar({ composersProp }: { composersProp: any }) {
                 </div>
             ) : (
                 <div className={clsx("searchbarDiv", isRedirecting && "opacity-25 pointer-events-none")}><ReactSearchAutocomplete
-                    items={composersProp}
+                    items={searchables}
                     onSelect={handleOnSelect}
                     placeholder={"Search for a composer"}
                     formatResult={formatResult}
