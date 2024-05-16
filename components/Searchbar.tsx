@@ -24,6 +24,7 @@ export default function Searchbar({ searchables }: { searchables: any }) {
         keys: [
             "lastName",
             "name",
+            "composer",
         ]
     }
     const handleOnSelect = (item: Record<string,any>) => {
