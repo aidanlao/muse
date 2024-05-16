@@ -4,17 +4,19 @@ import PlayablePiece from "@/components/playablePiece";
 import { title } from "@/components/primitives";
 import { DocumentData } from "firebase/firestore";
 import Link from "next/link";
-import {Image} from "@nextui-org/image";
+import { Image } from "@nextui-org/image";
 import NextImage from "next/image";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import clsx from "clsx";
 export async function generateStaticParams() {
-    const pieces= await getAllPieces();
+    const pieces = await getAllPieces();
     const staticParams = pieces.map((pieceDoc) => {
         const piece = pieceDoc.data();
         return {
-        pieceid: piece.id,
-        id: piece.composerid,
-    }}) 
+            pieceid: piece.id,
+            id: piece.composerid,
+        }
+    })
     return staticParams;
 
 }
@@ -25,52 +27,61 @@ export default async function Page({ params }: { params: { id: string, pieceid: 
 
     return (
         <>
-         {
- piece ? (
-    <>
-    <div className="w-100 flex justify-center flex-col-reverse md:flex-row">
-  
-        <div className="md:basis-1/4 md:max-h-80">
-        <Image
-            classNames={{
-                wrapper: "h-full",
-                img: "h-full w-full object-cover object-top",
-            }}
-          as={NextImage}
-          width={300}
-          height={200}
-          src={"https://wallpapercave.com/wp/wp6355900.jpg"}
-          alt="NextUI hero Image"
-        />
-        </div>
-        <div className="md:basis-3/4 flex gap-4 pb-4 flex-col  md:px-5">
-            <h1 className={`text-3xl md:text-8xl font-black sm:text-6xl md:relative -left-10 z-10`}>{piece?.name}</h1>
-            <p className="text-xl font-thin">{piece?.opus}</p>
-            <p className="">{piece?.description}</p>
-            <Link
-                href={`/composers/${piece.composerid}`}
-                className="flex gap-2 text-sky-700 hover:text-sky-500"
-            >
-                <p className="flex">
-                <FaArrowUpRightFromSquare className="m-auto" />
-                </p>
-              
-                {piece.composer}
-            </Link>
-        </div>
-        
-    </div>
-</>
-) : (
-    <>
-    <p>There is no piece at this URL. </p>
-    <Link href="/composers">Back to composers</Link>
-    </>
-)
+            {
+                piece ? (
+                    <>
+                        <div className="w-100 pb-5 flex justify-center flex-col-reverse md:flex-row">
 
-         }
+                            <div className="md:basis-1/4 md:max-h-80">
+                                <Image
+                                    classNames={{
+                                        wrapper: "h-full",
+                                        img: "h-full w-full object-cover object-top",
+                                    }}
+                                    as={NextImage}
+                                    width={300}
+                                    height={200}
+                                    src={"https://wallpapercave.com/wp/wp6355900.jpg"}
+                                    alt="NextUI hero Image"
+                                />
+                            </div>
+                            <div className="md:basis-3/4 flex gap-4 pb-4 flex-col  md:px-5">
+                                <h1 className={clsx(piece?.name.length >5 ? "text-3xl" : "md:text-8xl sm:text-6xl" , `text-3xl  font-black  md:relative -left-10 z-10`)}>{piece?.name}</h1>
+                                <div className="flex gap-4">
+                                    <p className="text-xl font-thin">{piece?.opus}</p>
+                                    <Link
+                                        href={`/composers/${piece.composerid}`}
+                                        className="text-sky-700 text-xl font-thin hover:text-sky-500"
+                                    >
+                                        {piece.composer}
+                                    </Link>
+                                </div>
+
+                                <p className="">{piece?.description}</p>
+                                <Link
+                                    href={`/composers/${piece.composerid}`}
+                                    className="flex gap-2 text-sky-700 hover:text-sky-500"
+                                >
+                                    <p className="flex">
+                                        <FaArrowUpRightFromSquare className="m-auto" />
+                                    </p>
+
+                                    {piece.composer}
+                                </Link>
+                            </div>
+
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <p>There is no piece at this URL. </p>
+                        <Link href="/composers">Back to composers</Link>
+                    </>
+                )
+
+            }
         </>
-       
+
 
 
     )

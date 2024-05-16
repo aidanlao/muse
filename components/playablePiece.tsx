@@ -8,13 +8,14 @@ import { app } from "@/app/firebase/config";
 import { BsThreeDots } from "react-icons/bs";
 import { useEffect, useState, useRef } from 'react';
 import clsx from "clsx";
+import Link from "next/link";
 
 
 
 
 
 
-export default function PlayablePiece({ audioid, name, opus }: { opus: string, audioid: string, name: string }) {
+export default function PlayablePiece({ id, audioid, name, opus, composerid }: {composerid: string, id: string, opus: string, audioid: string, name: string }) {
     const storage = getStorage(app);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isFetchingSound, setIsFetchingSound] = useState(false);
@@ -77,16 +78,18 @@ export default function PlayablePiece({ audioid, name, opus }: { opus: string, a
         <Card>
             <CardBody className="p-0">
                 <div className="flex  divide-x">
-                    <div onClick={() => { toggle() }} className="transition flex transition dark:hover:bg-slate-800 hover:cursor-pointer hover:bg-slate-100 flex-col justify-center content-center p-5">
+                    <div onClick={() => { toggle() }} className="transition flex transition dark:hover:bg-cyan-800 hover:cursor-pointer hover:bg-sky-50 flex-col justify-center content-center p-5">
                         {!isPlaying ? (
                             isFetchingSound ? (<BsThreeDots /> ): <FaPlay />
                         ) :
                             (<FaStop />)}
                     </div>
-                    <div className="p-3 flex flex-col justify-center transition w-full dark:hover:bg-slate-800 hover:cursor-pointer hover:bg-slate-100">
+                    <Link className="p-3 flex flex-col justify-center transition w-full dark:hover:bg-cyan-800 hover:cursor-pointer hover:bg-sky-50"href={`/composers/${composerid}/${id}`}>
+       
                         <p>{name} <span className="text-gray-400">{opus}</span></p>
 
-                    </div>
+                    </Link>
+       
 
                 </div>
             </CardBody>
