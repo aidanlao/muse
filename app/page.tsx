@@ -30,7 +30,7 @@ export default async function Home() {
 					about your favorite composers and pieces
 				</h1>
 				<h2 className={subtitle({ class: "mt-4" })}>
-					The best place for classical music analysis.</h2>
+					A piano reference for your musical journey.</h2>
 			</div>
 
 			<div className="w-full flex flex-col items-center justify-center gap-4">
