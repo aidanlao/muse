@@ -21,7 +21,8 @@ import {
   })
 
   export const getPiece = cache(async (id: string) => {
-    const docRef = doc(db, "pieces", id);
+    const decoded = decodeURIComponent(id);
+    const docRef = doc(db, "pieces", decoded);
     const docSnap = await getDoc(docRef);
     return docSnap.data();
   })
