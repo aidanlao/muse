@@ -37,7 +37,7 @@ export default function Searchbar({ searchables }: { searchables: any }) {
 
     }
 
-    const formatResult = (item: Item) => {
+    const formatResult = (item: Record<string,any>) => {
         return (
             <>
                 <span style={{ textAlign: 'left' }}>{item.name}</span>
@@ -83,7 +83,7 @@ export default function Searchbar({ searchables }: { searchables: any }) {
                 <div className={clsx("searchbarDiv", isRedirecting && "opacity-25 pointer-events-none")}><ReactSearchAutocomplete
                     items={searchables}
                     onSelect={handleOnSelect}
-                    placeholder={"Search for a composer"}
+                    placeholder={"Search composer / piece"}
                     formatResult={formatResult}
                     fuseOptions={options} /></div>
 
