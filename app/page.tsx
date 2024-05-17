@@ -13,12 +13,32 @@ import { Button } from "@nextui-org/button";
 export default async function Home() {
 	const composerSnaps = await getAllComposers();
         const composers = composerSnaps.map((composer) => {
-                    return composer.data();
+            const data = composer.data();
+			const searchables = {
+				keywords: [data.name],
+				...data
+			}
+
+			return searchables;
 	})
 	const pieceSnaps = await getAllPieces();
 	const pieces = pieceSnaps.map((piece)=> {
-		return piece.data();
+		const data = piece.data();
+		const normalizedName = data.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+		const noc = [normalizedName, data.opus, data.composer];
+		const nameArray = normalizedName.split(" ");
+		const keywordsToSearch = noc.concat(nameArray);
+		const searchables = {
+			keywords: keywordsToSearch,
+			// namecomposer: `${data.name} ${data.opus} ${data.composer}`,
+			// composername: `${data.composer} ${data.name} ${data.opus}`,
+			
+			...data
+		}
+		console.log(searchables);
+		return searchables;
 	})
+	
 	const searchableItems = composers.concat(pieces);
 
 	return (

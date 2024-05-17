@@ -19,15 +19,14 @@ export default function Searchbar({ searchables, placeholder }: { placeholder:st
         threshold: 0.6,
         location: 0,
         distance: 100,
+        ignoreLocation: true,
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [
-            "opus",
-            "lastName",
-            "name",
-            "composer",
+            "keywords",
         ]
     }
+    console.log(options);
     const handleOnSelect = (item: Record<string,any>) => {
         console.log(item);
         setIsRedirecting(true);
