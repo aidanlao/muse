@@ -41,7 +41,7 @@ export default function Searchbar({ searchables, placeholder }: { placeholder:st
     const formatResult = (item: Record<string,any>) => {
         return (
             <>
-                <span style={{ textAlign: 'left' }}>{item.name}</span>
+                <span style={{ textAlign: 'left' }}>{item.name} {item.opus && item.opus}</span><span className="text-gray-400"> - {item.composer && `${item.composer}`}</span>
             </>
         )
     }
