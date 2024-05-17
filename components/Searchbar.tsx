@@ -24,6 +24,7 @@ export default function Searchbar({ searchables, placeholder }: { placeholder:st
         keys: [
             "lastName",
             "name",
+            "opus",
             "composer",
         ]
     }
