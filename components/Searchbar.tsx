@@ -24,6 +24,8 @@ export default function Searchbar({ searchables, placeholder }: { placeholder:st
         minMatchCharLength: 1,
         keys: [
             "keywords",
+            "opuscomposer",
+            "composeropus"
         ]
     }
     console.log(options);

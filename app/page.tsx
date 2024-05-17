@@ -25,13 +25,20 @@ export default async function Home() {
 	const pieces = pieceSnaps.map((piece)=> {
 		const data = piece.data();
 		const normalizedName = data.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+		
 		const noc = [normalizedName, data.opus, data.composer];
-		const nameArray = normalizedName.split(" ");
+		var nameArray
+		if (normalizedName.includes("in")) {
+			nameArray = normalizedName.split(" in ");
+		} else {
+			nameArray = normalizedName.split(" ");
+		}
+		
 		const keywordsToSearch = noc.concat(nameArray);
 		const searchables = {
 			keywords: keywordsToSearch,
-			// namecomposer: `${data.name} ${data.opus} ${data.composer}`,
-			// composername: `${data.composer} ${data.name} ${data.opus}`,
+			opuscomposer: `${data.opus} ${data.composer}`,
+			composeropus: `${data.composer} ${data.opus}`,
 			
 			...data
 		}
