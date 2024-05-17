@@ -22,9 +22,9 @@ export default function Searchbar({ searchables, placeholder }: { placeholder:st
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [
+            "opus",
             "lastName",
             "name",
-            "opus",
             "composer",
         ]
     }
