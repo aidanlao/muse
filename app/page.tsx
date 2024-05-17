@@ -27,9 +27,45 @@ export default async function Home() {
 		const normalizedName = data.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 		
 		const noc = [normalizedName, data.opus, data.composer];
-		var nameArray
+		var nameArray;
+
+		// Add the genre and key as separate when applicable
 		if (normalizedName.includes("in")) {
 			nameArray = normalizedName.split(" in ");
+
+			// Add combos of genre+composer vice versa
+			const genreWithNumber = nameArray[0];
+			var genre;
+			if (genreWithNumber.includes("no") || genreWithNumber.includes("No")) {
+				genre = genreWithNumber.split(" ")[0];
+			} else {
+				genre = genreWithNumber;
+			}
+
+			const genreComposer = `${genre} ${data.composer}`;
+			const composerGenre = `${data.composer} ${genre}`;
+			const genreNumberComposer = `${genreWithNumber} ${data.composer}`;
+			const composerGenreNumber = `${data.composer} ${genreWithNumber}`
+			// to do ? https://stackoverflow.com/questions/39927452/recursively-print-all-permutations-of-a-string-javascript#:~:text=To%20print%20them%2C%20just%20iterate%20over%20the%20array,print%28permutation%29%20%2F%2FUse%20the%20output%20method%20of%20your%20choice
+			// optimize to just generate all permutations of 
+			// genre, composer, opus, number
+			const genreOpus = `${genre} ${data.opus}`;
+			const opusGenre = `${data.opus} ${genre}`;
+			const opusGenreComposer = `${data.opus} ${genre} ${data.composer}`;
+			const genreOpusComposer = `${genre} ${data.opus} ${data.composer}`;
+			const composerGenreOpus = `${data.composer} ${genre} ${data.opus}`;
+			const composerOpusGenre = `${data.composer} ${data.opus} ${genre}`;
+			nameArray.push(genreOpus);
+			nameArray.push(opusGenre);
+			nameArray.push(opusGenreComposer);
+			nameArray.push(genreOpusComposer);
+			nameArray.push(genreComposer);
+			nameArray.push(composerGenre);
+			nameArray.push(genreNumberComposer);
+			nameArray.push(composerGenreNumber);
+			nameArray.push(composerGenreOpus);
+			nameArray.push(composerOpusGenre);
+
 		} else {
 			nameArray = normalizedName.split(" ");
 		}
@@ -39,10 +75,13 @@ export default async function Home() {
 			keywords: keywordsToSearch,
 			opuscomposer: `${data.opus} ${data.composer}`,
 			composeropus: `${data.composer} ${data.opus}`,
-			
+			name: data.name,
 			...data
 		}
+		if (!searchables.name.includes("Sonata")){
+			
 		console.log(searchables);
+		}
 		return searchables;
 	})
 	
