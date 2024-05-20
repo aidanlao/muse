@@ -20,9 +20,42 @@ export default async function Page({ params }: { params: { id: string } }) {
         )
     })
     const pieces = pieceDocs.map((piece)=> {
-		return piece.data();
+        const data = piece.data();
+
+        const pieceopus = `${data.name} ${data.opus}`;
+        const opuspiece = `${data.opus} ${data.name}`;
+        const opus = data.opus;
+        const name = data.name;
+
+        var keywordsToSearch:Record<string,any> = [];
+
+        if (name.includes("in") || name.includes("on")) {
+            const wordsInName = name.split(" ");
+            const genre = wordsInName[0];
+            keywordsToSearch.push(genre);
+
+            const genreOpus = genre + " " + opus;
+            const opusGenre = opus + " " + genre;
+
+            keywordsToSearch.push(genreOpus);
+            keywordsToSearch.push(opusGenre);
+        } 
+        if (name.includes("Variations")) {
+            console.log(keywordsToSearch);
+        }
+        keywordsToSearch.push(data.opus);
+        keywordsToSearch.push(data.name);
+        keywordsToSearch.push(pieceopus);
+        keywordsToSearch.push(opuspiece);
+
+        const searchables = {
+            keywords: keywordsToSearch,
+            ...data
+        }
+		return searchables;
 	})
-    const piecesList = pieces.map((piece) => {
+
+    const piecesList = pieces.map((piece:any) => {
         return (
             <Piece composerid={piece.composerid} id={piece.id} opus={piece.opus} name={piece.name} key={piece.id} {...piece} />
         )

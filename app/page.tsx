@@ -78,10 +78,6 @@ export default async function Home() {
 			name: data.name,
 			...data
 		}
-		if (!searchables.name.includes("Sonata")){
-			
-		console.log(searchables);
-		}
 		return searchables;
 	})
 	
