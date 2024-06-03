@@ -8,6 +8,7 @@ import { Image } from "@nextui-org/image";
 import NextImage from "next/image";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import clsx from "clsx";
+import { Spotify } from "react-spotify-embed";
 export async function generateStaticParams() {
     const pieces = await getAllPieces();
     const staticParams = pieces.map((pieceDoc) => {
@@ -24,7 +25,7 @@ export default async function Page({ params }: { params: { id: string, pieceid: 
     //console.log("params for parent composer is " + params.id);
     //console.log("params for pag are " + params.pieceid);
     const piece = await getPiece(params.pieceid);
-
+    const spotifyLink = piece?.spotifyLink;
     return (
         <>
             {
@@ -33,7 +34,8 @@ export default async function Page({ params }: { params: { id: string, pieceid: 
                         <div className="w-100 pb-5 flex justify-center flex-col-reverse md:flex-row">
 
                             <div className="md:basis-1/4 md:max-h-80">
-                                <Image
+                               { !spotifyLink ? 
+                                (<Image
                                     classNames={{
                                         wrapper: "h-full",
                                         img: "h-full w-full object-cover object-top",
@@ -43,7 +45,11 @@ export default async function Page({ params }: { params: { id: string, pieceid: 
                                     height={200}
                                     src={"https://wallpapercave.com/wp/wp6355900.jpg"}
                                     alt="NextUI hero Image"
-                                />
+                                />) : (
+<Spotify link={spotifyLink} />
+
+                                )
+            }
                             </div>
                             <div className="md:basis-3/4 flex gap-4 pb-4 flex-col  md:px-5">
                                 <h1 className={clsx(piece?.name.length >40 ? "text-3xl" : "md:text-8xl sm:text-6xl md:relative" , `text-3xl  font-black   -left-10 z-10`)}>{piece?.name}</h1>

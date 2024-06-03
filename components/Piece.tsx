@@ -19,7 +19,7 @@ export default function Piece({ name, opus, composerid, id }: {composerid: strin
     
     return (
                 <Link href={`/composers/${composerid}/${id}`}> 
-                <div className="p-1 rounded-full flex flex-col justify-center transition w-full dark:hover:bg-cyan-800 hover:cursor-pointer hover:bg-sky-50">
+                <div className="p-1 flex flex-col justify-center transition w-full dark:hover:bg-cyan-800 hover:cursor-pointer hover:bg-sky-50">
                         <p>{name} <span className="text-gray-400">{opus}</span></p>
 
                     </div>
