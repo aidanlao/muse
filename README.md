@@ -1,4 +1,4 @@
-# Piano Universe
+# Piano Reference
 
 We're building a new library for musicians, giving them the best resources for the pieces that they're learning. 
 
